@@ -178,7 +178,7 @@ def download_CVPR_papers():
             cursor.close()
             connection.close()
 
-    for paper in papers:
+    for paper in tqdm(papers):
         paper_title = paper[0]
         paper_link = paper[1]
         paper_supplemental_link = paper[2]
