@@ -206,7 +206,7 @@ def download_CVPR_papers():
 if __name__ == '__main__':
     base_url = 'https://openaccess.thecvf.com/'
 
-    checkpoints = false
+    checkpoints = False
 
     if not os.path.exists(f'./cvpr_links.txt'):
         # 获取链接并保存到文本文件中
