@@ -19,4 +19,4 @@
 
 * cvpr_links.txt：所有论文的网址，包含论文标题、作者、摘要、链接、补充材料链接、bibtex 等信息；
 * cvpr2023.sql：2359 篇论文的标题、作者、摘要、链接、补充材料链接、bibtex；
-* cvpr_papers：comming soon... 2359 篇论文及补充材料的 PDF 文件。
+* cvpr_papers.zip：comming soon... 2359 篇论文及补充材料的 PDF 文件。
