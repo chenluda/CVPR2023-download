@@ -191,6 +191,9 @@ def download_CVPR_papers():
         # 下载论文
         paper_response = requests_retry_session().get(paper_link)
 
+        if not os.path.exists(f'./cvpr_papers'):
+            os.mkdir(f'./cvpr_papers')
+
         if not os.path.exists(f'./cvpr_papers/{paper_title}'):
             os.mkdir(f'./cvpr_papers/{paper_title}')
 
