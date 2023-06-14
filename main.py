@@ -206,7 +206,7 @@ def download_CVPR_papers():
 if __name__ == '__main__':
     base_url = 'https://openaccess.thecvf.com/'
 
-    checkpoints = False
+    checkpoints = false
     checkpoints_num = 1000
 
     if not os.path.exists(f'./cvpr_links.txt'):
