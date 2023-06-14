@@ -18,5 +18,9 @@
 ### 结构
 
 * cvpr_links.txt：所有论文的网址，包含论文标题、作者、摘要、链接、补充材料链接、bibtex 等信息；
+![image](https://github.com/chenluda/CVPR2023-download/assets/45784833/6c5b9d30-2b8d-4b7a-a8cb-a23d2ed23514)
+
 * cvpr2023.sql：2359 篇论文的标题、作者、摘要、链接、补充材料链接、bibtex；
+![961c3ff1b19579253c8fc9bf4d5e841a](https://github.com/chenluda/CVPR2023-download/assets/45784833/67c0e7c3-e20d-496d-8c80-66c3f6aadd18)
+
 * cvpr_papers.zip：comming soon... 2359 篇论文及补充材料的 PDF 文件。
