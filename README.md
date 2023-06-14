@@ -11,11 +11,19 @@
 ### 功能
 
 1. 获取 CVPR2023 所有接收论文的标题、作者、摘要、链接、补充材料链接、bibtex，并保存至本地数据库；
-2. 从本地数据库读取论文的链接和补充材料链接，下载 PDF 文件。
+2. 从本地数据库读取论文的链接和补充材料链接，下载 PDF 文件；
+3. 根据论文标题和摘要筛选论文。
 
 ---
 
-### 结构
+### 代码
+
+* main.py：实现 1. 2. 功能；
+* paper_classification：实现 3. 功能。
+
+---
+
+### 文件
 
 * cvpr_links.txt：所有论文的网址，包含论文标题、作者、摘要、链接、补充材料链接、bibtex 等信息；
 ![image](https://github.com/chenluda/CVPR2023-download/assets/45784833/6c5b9d30-2b8d-4b7a-a8cb-a23d2ed23514)
@@ -24,3 +32,7 @@
 ![961c3ff1b19579253c8fc9bf4d5e841a](https://github.com/chenluda/CVPR2023-download/assets/45784833/67c0e7c3-e20d-496d-8c80-66c3f6aadd18)
 
 * cvpr_papers.zip：comming soon... 2359 篇论文及补充材料的 PDF 文件。
+
+* relevant_papers.md：从 2359 篇论文中筛选出的 58 篇医学影像相关论文。
+![image](https://github.com/chenluda/CVPR2023-download/assets/45784833/58a24a63-9850-4c71-8d28-ba62c80508f3)
+
