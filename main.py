@@ -65,9 +65,9 @@ def get_papers_information(filename, batch_size):
     with open(filename, 'r') as f:
         html_links = [link.strip() for link in f.readlines()]
 
-        # 检查是否已经获取过部分数据
+        # 中断后重启
         if checkpoints:
-            html_links = html_links[checkpoints_num:]
+            html_links = html_links[1850:]
 
     for link in tqdm(html_links):
 
@@ -207,7 +207,6 @@ if __name__ == '__main__':
     base_url = 'https://openaccess.thecvf.com/'
 
     checkpoints = false
-    checkpoints_num = 1000
 
     if not os.path.exists(f'./cvpr_links.txt'):
         # 获取链接并保存到文本文件中
