@@ -178,6 +178,9 @@ def download_CVPR_papers():
             cursor.close()
             connection.close()
 
+    if checkpoints:
+        papers = papers[271:]
+
     for paper in tqdm(papers):
         paper_title = paper[0]
         paper_link = paper[1]
