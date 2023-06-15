@@ -23,6 +23,7 @@ python main.py
 ```
 * paper_classification.py：字符串匹配简单筛选论文；
 * check_highlight_candidate.py：检查 highlight 和 candidate 的数量是否符合（highlight_num = 235, candidate_num = 12）
+* batch_zip_files.py：自动打包指定目录下的文件，每 batch_size 个文件打包成一个 zip 文件
 
 ---
 
