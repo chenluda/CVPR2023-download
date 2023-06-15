@@ -15,7 +15,7 @@
 
 ---
 
-### 代码
+### 代码说明
 
 * main.py：实现 1. 2. 功能（香港节点好用）；
 ```
@@ -26,7 +26,7 @@ python main.py
 
 ---
 
-### 文件
+### 文件说明
 
 * cvpr_links.txt：所有论文的网址，网站内包含论文标题、作者、摘要、链接、补充材料链接、bibtex 等信息；
 ![image](https://github.com/chenluda/CVPR2023-download/assets/45784833/6c5b9d30-2b8d-4b7a-a8cb-a23d2ed23514)
