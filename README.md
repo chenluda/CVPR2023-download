@@ -34,6 +34,6 @@ python main.py
 * cvpr2023.sql：数据库文件，包含 2359 篇论文的标题、作者、摘要、链接、补充材料链接、bibtex、是否为 Highlight、是否为获奖候选等字段；
 ![961c3ff1b19579253c8fc9bf4d5e841a](https://github.com/chenluda/CVPR2023-download/assets/45784833/67c0e7c3-e20d-496d-8c80-66c3f6aadd18)
 
-* relevant_papers.md：从 2359 篇论文中筛选出的 58 篇医学影像相关论文。
+* relevant_papers.md：从 2359 篇论文中筛选出的 58 篇医学影像相关论文，按论文标题、作者、摘要的顺序排列。
 ![image](https://github.com/chenluda/CVPR2023-download/assets/45784833/58a24a63-9850-4c71-8d28-ba62c80508f3)
 
