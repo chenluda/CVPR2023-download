@@ -18,9 +18,9 @@
 ### 代码
 
 * main.py：实现 1. 2. 功能；
----
+```
 python main.py
----
+```
 * paper_classification.py：字符串匹配简单筛选论文；
 * check_highlight_candidate.py：检查 highlight 和 candidate 的数量是否符合（highlight_num = 235, candidate_num = 12）
 
