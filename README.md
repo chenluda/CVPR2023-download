@@ -38,3 +38,4 @@ python main.py
 * relevant_papers.md：从 2359 篇论文中筛选出的 58 篇医学影像相关论文，按论文标题、作者、摘要的顺序排列。
 ![image](https://github.com/chenluda/CVPR2023-download/assets/45784833/58a24a63-9850-4c71-8d28-ba62c80508f3)
 
+* cvpr_papers：2359 篇论文及其补充材料每 100 篇打包成一个 zip 文件。
