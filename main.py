@@ -10,6 +10,7 @@ Copyright (c) 2023 by Kust-BME, All Rights Reserved.
 import os
 import re
 from urllib.parse import urljoin
+import numpy as np
 
 import mysql.connector
 import requests
@@ -20,7 +21,7 @@ from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
 def requests_retry_session(
-    retries=3,
+    retries=5,
     backoff_factor=0.3,
     status_forcelist=(500, 502, 504),
     session=None,
@@ -65,11 +66,11 @@ def get_papers_information(filename, batch_size):
     with open(filename, 'r') as f:
         html_links = [link.strip() for link in f.readlines()]
 
-        # 中断后重启
-        if checkpoints:
-            html_links = html_links[1850:]
+        # 中断重启
+        checkpoint = np.load('checkpoint.npy') if os.path.exists('checkpoint.npy') else 0
+        html_links = html_links[checkpoint:]
 
-    for link in tqdm(html_links):
+    for idx, link in enumerate(tqdm(html_links), start=checkpoint):
 
         full_link = urljoin(base_url, link)
 
@@ -105,6 +106,9 @@ def get_papers_information(filename, batch_size):
         if len(paper_list) == batch_size:
             insert_papers_to_db(paper_list)
             paper_list.clear()
+
+        # 更新断点
+        np.save('checkpoint.npy', idx+1)
 
     # 插入剩余的数据
     if paper_list:
@@ -158,7 +162,7 @@ def download_CVPR_papers():
             host='localhost',
             user='root',
             password='root',
-            database='CVPR2023'
+            database='cvpr2023'
         )
 
         cursor = connection.cursor()
@@ -178,10 +182,11 @@ def download_CVPR_papers():
             cursor.close()
             connection.close()
 
-    if checkpoints:
-        papers = papers[271:]
+    # 中断重启
+    checkpoint_pdf = np.load('checkpoint_pdf.npy') if os.path.exists('checkpoint_pdf.npy') else 0
+    papers = papers[checkpoint_pdf:]
 
-    for paper in tqdm(papers):
+    for idx, paper in enumerate(tqdm(papers), start=checkpoint_pdf):
         paper_title = paper[0]
         paper_link = paper[1]
         paper_supplemental_link = paper[2]
@@ -194,9 +199,6 @@ def download_CVPR_papers():
         # 下载论文
         paper_response = requests_retry_session().get(paper_link)
 
-        if not os.path.exists(f'./cvpr_papers'):
-            os.mkdir(f'./cvpr_papers')
-
         if not os.path.exists(f'./cvpr_papers/{paper_title}'):
             os.mkdir(f'./cvpr_papers/{paper_title}')
 
@@ -208,11 +210,12 @@ def download_CVPR_papers():
         with open(f'./cvpr_papers/{paper_title}/supplemental.pdf', 'wb') as f:
             f.write(paper_supplemental_response.content)
 
+        # 更新断点
+        np.save('checkpoint_pdf.npy', idx+1)
+
 
 if __name__ == '__main__':
     base_url = 'https://openaccess.thecvf.com/'
-
-    checkpoints = False
 
     if not os.path.exists(f'./cvpr_links.txt'):
         # 获取链接并保存到文本文件中
@@ -221,5 +224,5 @@ if __name__ == '__main__':
     # 获取论文的标题、作者、摘要、链接、补充材料链接、bibtex
     paper_list = get_papers_information('cvpr_links.txt', 50)
 
-    # # 通过链接下载 CVPR2023 论文和补充材料
+    # 通过链接下载 CVPR2023 论文和补充材料
     download_CVPR_papers()
