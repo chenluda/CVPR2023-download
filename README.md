@@ -22,8 +22,8 @@
 python main.py
 ```
 * paper_classification.py：字符串匹配简单筛选论文；
-* check_highlight_candidate.py：检查 highlight 和 candidate 的数量是否符合（highlight_num = 235, candidate_num = 12）
-* batch_zip_files.py：自动打包指定目录下的文件，每 batch_size 个文件打包成一个 zip 文件
+* check_highlight_candidate.py：检查 highlight 和 candidate 的数量是否符合（highlight_num = 235, candidate_num = 12）；
+* batch_zip_files.py：自动打包指定目录下的文件，每 batch_size 个文件打包成一个 zip 文件。
 
 ---
 
@@ -37,6 +37,3 @@ python main.py
 
 * relevant_papers.md：从 2359 篇论文中筛选出的 58 篇医学影像相关论文，按论文标题、作者、摘要的顺序排列。
 ![image](https://github.com/chenluda/CVPR2023-download/assets/45784833/58a24a63-9850-4c71-8d28-ba62c80508f3)
-
-* cvpr_papers：2359 篇论文及其补充材料每 100 篇打包成一个 zip 文件。
-![image](https://github.com/chenluda/CVPR2023-download/assets/45784833/ad64c3c3-6b49-447d-8973-4e3df254915a)
