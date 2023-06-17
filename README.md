@@ -1,5 +1,7 @@
 # CVPR2023 论文下载
 
+![image](https://github.com/chenluda/CVPR2023-download/assets/45784833/fcc094b7-60a1-4597-812f-76a5a3c41436)
+
 ### 背景
 
 * CVPR 2023 收到了 9155 份投稿，相比上一年度的 CVPR 2022 的 8161 份投稿增加了 12%。
