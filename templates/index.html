@@ -26,14 +26,6 @@
         font-weight: normal;
       }
 
-      .table {
-        margin-bottom: 30px;
-      }
-
-      .table th {
-        font-weight: bold;
-      }
-
       .pagination {
         display: flex;
         justify-content: center;
@@ -42,28 +34,20 @@
 
       .pagination .page-item {
         margin: 0 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .pagination .page-item:hover {
+        background-color: #007bff;
+      }
+
+      .pagination-top {
+        display: flex;
+        justify-content: right;
       }
 
       .form-check-input:checked ~ .form-check-label {
         font-weight: bold;
-      }
-
-      tbody tr:hover {
-        background-color: #ebfbee;
-      }
-
-      a {
-        color: #007bff;
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      .abstract {
-        max-width: 400px;
-        word-break: break-word;
       }
 
       .container {
@@ -75,22 +59,6 @@
 
       .form-check-input {
         margin-top: 2px;
-      }
-
-      .table {
-        transition: background-color 0.3s ease;
-      }
-
-      .table:hover {
-        background-color: #f1f1f1;
-      }
-
-      .pagination .page-item {
-        transition: background-color 0.3s ease;
-      }
-
-      .pagination .page-item:hover {
-        background-color: #007bff;
       }
 
       .search-container {
@@ -109,40 +77,6 @@
 
       .form-check-inline .form-check-input {
         margin-top: 0;
-      }
-
-      @media (max-width: 576px) {
-        .table td,
-        .table th {
-          padding: 8px;
-        }
-
-        .table thead {
-          display: none;
-        }
-
-        .table tbody tr {
-          display: block;
-          margin-bottom: 20px;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-        }
-
-        .table tbody td {
-          display: block;
-          text-align: center;
-        }
-
-        .table tbody td:before {
-          content: attr(data-label);
-          font-weight: bold;
-          margin-bottom: 5px;
-          display: block;
-        }
-
-        .pagination {
-          margin-top: 10px;
-        }
       }
 
       .card {
@@ -240,6 +174,7 @@
               >Only show award candidates</label
             >
           </div>
+          <div class="pagination-top">{{ pagination.links }}</div>
         </form>
       </div>
       {% for paper in papers %}
