@@ -1,7 +1,6 @@
 # CVPR2023 论文下载
 
-![image](https://github.com/chenluda/CVPR2023-download/assets/45784833/5a809cb4-c5bd-4d49-a3c3-6f0947c9f4e0)
-
+![image](https://github.com/chenluda/CVPR2023-download/assets/45784833/77251c0f-5e69-4e37-9352-0805fe66261f)
 
 ### 背景
 
