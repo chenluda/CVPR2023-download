@@ -18,6 +18,12 @@
         text-align: center;
       }
 
+      hr {
+        border: none;
+        border-top: 2px solid #ccc;
+        color: #ccc;
+      }
+
       .search-container label {
         font-weight: bold;
       }
@@ -51,7 +57,7 @@
       }
 
       .container {
-        background-color: #fff;
+        background-color: #f1f3f5;
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
@@ -80,8 +86,15 @@
       }
 
       .card {
+        background-color: #f8f9fa;
         margin-bottom: 20px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       }
 
       .card-body {
@@ -174,6 +187,7 @@
               >Only show award candidates</label
             >
           </div>
+          <hr />
           <div class="pagination-top">{{ pagination.links }}</div>
         </form>
       </div>
