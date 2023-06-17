@@ -95,7 +95,6 @@
 
       .search-container {
         margin-bottom: 20px;
-        /* display: flex; */
         justify-content: space-between;
         align-items: center;
       }
@@ -112,7 +111,6 @@
         margin-top: 0;
       }
 
-      /* 响应式设计 */
       @media (max-width: 576px) {
         .table td,
         .table th {
@@ -221,6 +219,7 @@
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="highlights"
             id="highlights" {{ 'checked' if highlights }}>
+            <span style="color: gold">🌟</span>
             <label class="form-check-label" for="highlights"
               >Only show highlights</label
             >
@@ -228,6 +227,7 @@
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="candidates"
             id="candidates" {{ 'checked' if candidates }}>
+            <span style="color: #4caf50">🏆</span>
             <label class="form-check-label" for="candidates"
               >Only show award candidates</label
             >
@@ -241,7 +241,13 @@
         data-target="#modal{{ loop.index }}"
       >
         <div class="card-body">
-          <h5 class="card-title">{{ paper[1] }}</h5>
+          <h5 class="card-title">
+            {% if paper[7] %}
+            <span style="color: gold">🌟</span>
+            {% endif %} {% if paper[8] %}
+            <span style="color: #4caf50">🏆</span>
+            {% endif %} {{ paper[1] }}
+          </h5>
           <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 5px">
             {{ paper[2] }}
           </h6>
@@ -249,21 +255,19 @@
             {{ paper[3]|replace('\n', ' ')|truncate_words(50) }}...
           </p>
           <a
-            href="https://openaccess.thecvf.com/{{ paper[4] }}"
+            href="https://openaccess.thecvf.com/{{ paper[5] }}"
             target="_blank"
             class="card-link btn btn-outline-primary"
             >Paper</a
           >
           <a
-            href="https://openaccess.thecvf.com/{{ paper[5] }}"
+            href="https://openaccess.thecvf.com/{{ paper[6] }}"
             target="_blank"
             class="card-link btn btn-outline-primary"
             >Supplemental</a
           >
         </div>
       </div>
-
-      <!-- 模态框 -->
       <div
         class="modal right fade"
         id="modal{{ loop.index }}"
@@ -292,330 +296,6 @@
               {{ paper[2] }}
             </h6>
             <div class="modal-body">
-              <!-- 显示详细信息 -->
-              {{ paper[3] }}
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-      <div class="pagination">{{ pagination.links }}</div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $("input").on("change", function () {
-          $(this).closest("form").submit();
-        });
-      });
-    </script>
-  </body>
-</html>
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>CVPR 2023 Papers</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    />
-    <style>
-      body {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        font-family: Arial, sans-serif;
-      }
-
-      h1 {
-        margin-bottom: 30px;
-        text-align: center;
-      }
-
-      .search-container label {
-        font-weight: bold;
-      }
-
-      .form-check-label {
-        font-weight: normal;
-      }
-
-      .table {
-        margin-bottom: 30px;
-      }
-
-      .table th {
-        font-weight: bold;
-      }
-
-      .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 30px;
-      }
-
-      .pagination .page-item {
-        margin: 0 5px;
-      }
-
-      .form-check-input:checked ~ .form-check-label {
-        font-weight: bold;
-      }
-
-      tbody tr:hover {
-        background-color: #ebfbee;
-      }
-
-      a {
-        color: #007bff;
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      .abstract {
-        max-width: 400px;
-        word-break: break-word;
-      }
-
-      .container {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-      }
-
-      .form-check-input {
-        margin-top: 2px;
-      }
-
-      .table {
-        transition: background-color 0.3s ease;
-      }
-
-      .table:hover {
-        background-color: #f1f1f1;
-      }
-
-      .pagination .page-item {
-        transition: background-color 0.3s ease;
-      }
-
-      .pagination .page-item:hover {
-        background-color: #007bff;
-      }
-
-      .search-container {
-        margin-bottom: 20px;
-        /* display: flex; */
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .form-check-inline {
-        margin-right: 20px;
-      }
-
-      .form-check-inline .form-check-label {
-        margin-right: 5px;
-      }
-
-      .form-check-inline .form-check-input {
-        margin-top: 0;
-      }
-
-      /* 响应式设计 */
-      @media (max-width: 576px) {
-        .table td,
-        .table th {
-          padding: 8px;
-        }
-
-        .table thead {
-          display: none;
-        }
-
-        .table tbody tr {
-          display: block;
-          margin-bottom: 20px;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-        }
-
-        .table tbody td {
-          display: block;
-          text-align: center;
-        }
-
-        .table tbody td:before {
-          content: attr(data-label);
-          font-weight: bold;
-          margin-bottom: 5px;
-          display: block;
-        }
-
-        .pagination {
-          margin-top: 10px;
-        }
-      }
-
-      .card {
-        margin-bottom: 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-      }
-
-      .card-body {
-        padding: 20px;
-      }
-
-      .card-title {
-        margin-bottom: 10px;
-      }
-
-      .card-link {
-        color: #007bff;
-        transition: color 0.3s ease;
-      }
-
-      .card-link:hover {
-        color: #0056b3;
-        text-decoration: none;
-      }
-
-      .btn-outline-primary {
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
-
-      .btn-outline-primary:hover {
-        color: #fff;
-        background-color: #007bff;
-        border-color: #007bff;
-      }
-
-      .modal.right .modal-dialog {
-        position: fixed;
-        margin: auto;
-        height: 100%;
-        right: 0;
-      }
-
-      .modal.right .modal-content {
-        height: 100%;
-        overflow-y: auto;
-      }
-
-      .modal.right .modal-body {
-        padding: 15px 15px 80px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>CVPR 2023 Papers</h1>
-      <div class="search-container">
-        <form action="/" method="GET">
-          <div class="input-group mb-3">
-            <input
-              type="text"
-              class="form-control"
-              name="search"
-              id="search"
-              placeholder="Search..."
-              value="{{ search }}"
-            />
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit">
-                Search
-              </button>
-            </div>
-          </div>
-          <p style="font-weight: bold">{{total}} papers found.</p>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="highlights"
-            id="highlights" {{ 'checked' if highlights }}>
-            <label class="form-check-label" for="highlights"
-              >Only show highlights</label
-            >
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="candidates"
-            id="candidates" {{ 'checked' if candidates }}>
-            <label class="form-check-label" for="candidates"
-              >Only show award candidates</label
-            >
-          </div>
-        </form>
-      </div>
-      {% for paper in papers %}
-      <div
-        class="card"
-        data-toggle="modal"
-        data-target="#modal{{ loop.index }}"
-      >
-        <div class="card-body">
-          <h5 class="card-title">{{ paper[1] }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 5px">
-            {{ paper[2] }}
-          </h6>
-          <p class="card-text">
-            {{ paper[3]|replace('\n', ' ')|truncate_words(50) }}...
-          </p>
-          <a
-            href="https://openaccess.thecvf.com/{{ paper[4] }}"
-            target="_blank"
-            class="card-link btn btn-outline-primary"
-            >Paper</a
-          >
-          <a
-            href="https://openaccess.thecvf.com/{{ paper[5] }}"
-            target="_blank"
-            class="card-link btn btn-outline-primary"
-            >Supplemental</a
-          >
-        </div>
-      </div>
-
-      <!-- 模态框 -->
-      <div
-        class="modal right fade"
-        id="modal{{ loop.index }}"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">{{ paper[1] }}</h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <h6
-              class="card-subtitle mb-2 text-muted"
-              style="margin-top: 20px; margin-left: 20px"
-            >
-              {{ paper[2] }}
-            </h6>
-            <div class="modal-body">
-              <!-- 显示详细信息 -->
               {{ paper[3] }}
             </div>
             <div class="modal-footer">
