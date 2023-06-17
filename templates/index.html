@@ -194,6 +194,13 @@
       .modal.right .modal-body {
         padding: 15px 15px 80px;
       }
+
+      footer {
+        margin-top: 20px;
+        font-size: 0.9rem;
+        color: #666;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -296,9 +303,7 @@
             >
               {{ paper[2] }}
             </h6>
-            <div class="modal-body">
-              {{ paper[3] }}
-            </div>
+            <div class="modal-body">{{ paper[3] }}</div>
             <div class="modal-footer">
               <button
                 type="button"
@@ -323,5 +328,6 @@
         });
       });
     </script>
+    <footer>&copy; 2023 Glenn. All rights reserved.</footer>
   </body>
 </html>
