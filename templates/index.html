@@ -243,37 +243,48 @@
         </form>
       </div>
       {% for paper in papers %}
-      <div
-        class="card"
-        data-toggle="modal"
-        data-target="#modal{{ loop.index }}"
-      >
+      <div class="card">
         <div class="card-body">
-          <h5 class="card-title">
-            {% if paper[7] %}
-            <span style="color: gold">🌟</span>
-            {% endif %} {% if paper[8] %}
-            <span style="color: #4caf50">🏆</span>
-            {% endif %} {{ paper[1] }}
-          </h5>
-          <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 5px">
-            {{ paper[2] }}
-          </h6>
-          <p class="card-text">
-            {{ paper[3]|replace('\n', ' ')|truncate_words(50) }}...
-          </p>
-          <a
-            href="https://openaccess.thecvf.com/{{ paper[4] }}"
-            target="_blank"
-            class="card-link btn btn-outline-primary"
-            >Paper</a
+          <div
+            style="margin-bottom: 20px"
+            data-toggle="modal"
+            data-target="#modal{{ loop.index }}"
           >
-          <a
-            href="https://openaccess.thecvf.com/{{ paper[5] }}"
-            target="_blank"
-            class="card-link btn btn-outline-primary"
-            >Supplemental</a
-          >
+            <h5 class="card-title">
+              {% if paper[7] %}
+              <span style="color: gold">🌟</span>
+              {% endif %} {% if paper[8] %}
+              <span style="color: #4caf50">🏆</span>
+              {% endif %} {{ paper[1] }}
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 5px">
+              {{ paper[2] }}
+            </h6>
+            <p class="card-text">
+              {{ paper[3]|replace('\n', ' ')|truncate_words(50) }}...
+            </p>
+          </div>
+          <div>
+            <a
+              href="https://openaccess.thecvf.com/{{ paper[4] }}"
+              target="_blank"
+              class="card-link btn btn-outline-primary"
+              >Paper</a
+            >
+            <a
+              href="https://openaccess.thecvf.com/{{ paper[5] }}"
+              target="_blank"
+              class="card-link btn btn-outline-primary"
+              >Supplemental</a
+            >
+            <button
+              id="copyBibTex{{ loop.index }}"
+              class="card-link btn btn-outline-primary"
+              data-clipboard-text="{{ paper[6] }}"
+            >
+              Copy BibTex
+            </button>
+          </div>
         </div>
       </div>
       <div
@@ -319,12 +330,25 @@
       {% endfor %}
       <div class="pagination">{{ pagination.links }}</div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script>
       $(document).ready(function () {
         $("input").on("change", function () {
           $(this).closest("form").submit();
+        });
+
+        var clipboard = new ClipboardJS(".btn");
+
+        clipboard.on("success", function (e) {
+          console.log(e);
+          alert(e.text + "\n copied to clipboard.");
+          e.clearSelection();
+        });
+
+        clipboard.on("error", function (e) {
+          alert("Failed to copy BibTex.");
         });
       });
     </script>
