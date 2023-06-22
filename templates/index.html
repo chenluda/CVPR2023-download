@@ -1,10 +1,19 @@
+<!--
+ * @Description: 
+ * @Version: 1.0
+ * @Author: 陈路达
+ * @Email: chenluda01@outlook.com
+ * @Date: 2023-06-17 08:50:16
+ * @FilePath: \21-CVPR_download\templates\index.html
+ * Copyright (c) 2023 by Kust-BME, All Rights Reserved. 
+-->
 <!DOCTYPE html>
 <html>
   <head>
     <title>CVPR 2023 Papers</title>
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
     />
     <style>
       body {
@@ -172,19 +181,27 @@
           </div>
           <p style="font-weight: bold">{{total}} papers found.</p>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="highlights"
-            id="highlights" {{ 'checked' if highlights }}>
-            <span style="color: gold">🌟</span>
+            <input class="form-check-input single-checkbox" type="checkbox"
+            name="highlights" id="highlights" {{ 'checked' if highlights }}>
+            <span>🌟</span>
             <label class="form-check-label" for="highlights"
               >Only show highlights</label
             >
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="candidates"
-            id="candidates" {{ 'checked' if candidates }}>
-            <span style="color: #4caf50">🏆</span>
+            <input class="form-check-input single-checkbox" type="checkbox"
+            name="candidates" id="candidates" {{ 'checked' if candidates }}>
+            <span>🏆</span>
             <label class="form-check-label" for="candidates"
               >Only show award candidates</label
+            >
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input single-checkbox" type="checkbox"
+            name="best_paper" id="best_paper" {{ 'checked' if best_paper }}>
+            <span>🎊</span>
+            <label class="form-check-label" for="best_paper"
+              >Only show best papers</label
             >
           </div>
           <hr />
@@ -200,10 +217,12 @@
             data-target="#modal{{ loop.index }}"
           >
             <h5 class="card-title">
-              {% if paper[7] %}
-              <span style="color: gold">🌟</span>
-              {% endif %} {% if paper[8] %}
-              <span style="color: #4caf50">🏆</span>
+              {% if paper[7] and not paper[8] %}
+              <span>🌟</span>
+              {% endif %} {% if paper[8] and not paper[9] %}
+              <span>🏆</span>
+              {% endif %} {% if paper[9] %}
+              <span>🎊</span>
               {% endif %} {{ paper[1] }}
             </h5>
             <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 5px">
@@ -279,12 +298,19 @@
       {% endfor %}
       <div class="pagination">{{ pagination.links }}</div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/clipboard.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.5.1.slim.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script>
       $(document).ready(function () {
-        $("input").on("change", function () {
+        $(".single-checkbox").on("change", function () {
+          if (this.checked) {
+            $(".single-checkbox").each(function () {
+              if (this !== event.target) {
+                this.checked = false;
+              }
+            });
+          }
           $(this).closest("form").submit();
         });
 
@@ -301,6 +327,7 @@
         });
       });
     </script>
+
     <footer>&copy; 2023 Glenn. All rights reserved.</footer>
   </body>
 </html>
