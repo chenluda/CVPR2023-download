@@ -13,7 +13,7 @@ import mysql.connector
 
 app = Flask(__name__)
 
-def get_CVPR_papers(search=None, highlights=False, candidates=False):
+def get_CVPR_papers(search=None, highlights=False, candidates=False, best_paper=False):
     """
     从数据库获取CVPR论文相关信息
     """
@@ -43,6 +43,9 @@ def get_CVPR_papers(search=None, highlights=False, candidates=False):
         if candidates:
             query += " AND is_candidate = 1"
 
+        if best_paper:
+            query += " AND best_paper = 1"
+
         cursor.execute(query, query_params)
         
         papers = cursor.fetchall()
@@ -71,11 +74,12 @@ def index():
     search = request.args.get('search', '')
     highlights = 'highlights' in request.args
     candidates = 'candidates' in request.args
+    best_paper = 'best_paper' in request.args
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-    total = len(get_CVPR_papers(search, highlights, candidates))
-    pagination_papers = get_CVPR_papers(search, highlights, candidates)[offset: offset + per_page]
+    total = len(get_CVPR_papers(search, highlights, candidates, best_paper))
+    pagination_papers = get_CVPR_papers(search, highlights, candidates, best_paper)[offset: offset + per_page]
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
-    return render_template('index.html', papers=pagination_papers, page=page, per_page=per_page, pagination=pagination, search=search, highlights=highlights, candidates=candidates, total=total)
+    return render_template('index.html', papers=pagination_papers, page=page, per_page=per_page, pagination=pagination, search=search, highlights=highlights, candidates=candidates, best_paper=best_paper, total=total)
 
 
 if __name__ == "__main__":
