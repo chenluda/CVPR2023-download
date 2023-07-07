@@ -12,7 +12,7 @@ import mysql.connector
 
 def get_CVPR_papers():
     """
-    通过链接下载 CVPR2023 论文和补充材料
+    从本地数据库获取论文信息
     """
     connection = None
     try:
